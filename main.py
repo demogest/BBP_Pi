@@ -24,7 +24,7 @@ if __name__ == '__main__':
     start = time.time()
     params = list(tqdm([i for i in range(int(n))], desc="Creating params list"))
     getcontext().prec = int(n)
-    pool = ProcessPoolExecutor(max_workers=4)
+    pool = ProcessPoolExecutor(max_workers=16)
     print("start")
     results = list(tqdm(pool.map(getPi,params), total=len(params), desc='Calculating pi with bbp：'))
 
@@ -34,5 +34,5 @@ if __name__ == '__main__':
     for r in results:
         pi += r
     # print(pi)
-    with open('pi.txt', 'w')as f:
+    with open('pi.txt', 'w') as f:
         f.write(str(pi))
